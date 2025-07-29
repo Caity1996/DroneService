@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DroneService
+{
+    public class Controller
+    {
+        Queue<Drone> Regular;
+        Queue<Drone> Express;
+
+        public Controller()
+        {
+            Regular = new Queue<Drone>();
+            Express = new Queue<Drone>();
+        }
+
+        public void AddRegularDrone(string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, string ServiceTag)
+        {
+            Regular.Enqueue(new Drone (ClientName, DroneModel, ServiceProblem, ServiceCost, ServiceTag));
+        }
+
+        public void AddExpressDrone(string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, string ServiceTag)
+        {
+            Express.Enqueue(new Drone (ClientName, DroneModel, ServiceProblem, ServiceCost, ServiceTag));
+        }
+
+        public bool RemoveRegularDrone()
+        {
+            if (Regular.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                Regular.Dequeue();
+                return true;
+            }
+        }
+
+        public bool RemoveExpressDrone()
+        {
+            if (Express.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                Express.Dequeue();
+                return true;
+            }
+        }
+    }
+}
