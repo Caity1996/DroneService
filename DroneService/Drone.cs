@@ -12,14 +12,14 @@ namespace DroneService
         string DroneModel { get; set; }
         string ServiceProblem { get; set; }
         double ServiceCost { get; set; }
-        string ServiceTag { get; set; }
+        int ServiceTag { get; set; }
 
         public Drone()
         {
 
         }
 
-        public Drone (string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, string ServiceTag)
+        public Drone (string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, int ServiceTag)
         {
             this.ClientName = ClientName;
             this.DroneModel = DroneModel;

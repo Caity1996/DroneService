@@ -17,12 +17,12 @@ namespace DroneService
             Express = new Queue<Drone>();
         }
 
-        public void AddRegularDrone(string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, string ServiceTag)
+        public void AddRegularDrone(string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, int ServiceTag)
         {
             Regular.Enqueue(new Drone (ClientName, DroneModel, ServiceProblem, ServiceCost, ServiceTag));
         }
 
-        public void AddExpressDrone(string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, string ServiceTag)
+        public void AddExpressDrone(string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, int ServiceTag)
         {
             Express.Enqueue(new Drone (ClientName, DroneModel, ServiceProblem, ServiceCost, ServiceTag));
         }
