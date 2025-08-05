@@ -6,5 +6,7 @@
         xmlns:local="clr-namespace:DroneServiceFrontEnd"
         mc:Ignorable="d"
         Title="DroneService" Height="450" Width="800">
-    <Grid/>
+    <Grid>
+        <Button x:Name="AddDroneBtn" Content="Add Drone" HorizontalAlignment="Left" Margin="60,80,0,0" VerticalAlignment="Top" Height="46" Width="205" Click="Button_Click"/>
+    </Grid>
 </Window>

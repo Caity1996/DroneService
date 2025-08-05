@@ -23,5 +23,12 @@ namespace DroneServiceFrontEnd
             InitializeComponent();
             controller = new Controller();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AddDroneMenu addDroneMenu = new AddDroneMenu();
+
+            addDroneMenu.ShowDialog();
+        }
     }
 }
