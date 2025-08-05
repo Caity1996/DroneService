@@ -10,11 +10,13 @@ namespace DroneService
     {
         Queue<Drone> Regular;
         Queue<Drone> Express;
+        List<Drone> Finished;
 
         public Controller()
         {
             Regular = new Queue<Drone>();
             Express = new Queue<Drone>();
+            Finished = new List<Drone>();
         }
 
         public void AddRegularDrone(string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, int ServiceTag)
