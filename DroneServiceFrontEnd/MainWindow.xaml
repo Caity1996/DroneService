@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="DroneService" Height="450" Width="800">
     <Grid>
-        <Button x:Name="AddDroneBtn" Content="Add Drone" HorizontalAlignment="Left" Margin="60,80,0,0" VerticalAlignment="Top" Height="46" Width="205" Click="Button_Click"/>
+        <Button x:Name="AddDroneBtn" Content="Add Drone" HorizontalAlignment="Center" Margin="0,332,0,0" VerticalAlignment="Top" Height="46" Width="204" Click="Button_Click"/>
+        <StatusBar x:Name="StatusBar1" HorizontalAlignment="Center" Height="27" Margin="0,397,0,0" VerticalAlignment="Top" Width="780"/>
     </Grid>
 </Window>
