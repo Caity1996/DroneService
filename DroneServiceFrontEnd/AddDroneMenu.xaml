@@ -6,7 +6,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DroneServiceFrontEnd"
         mc:Ignorable="d"
-        Title="AddDroneMenu" Height="450" Width="800">
+        Title="AddDroneMenu" MaxHeight="450" MaxWidth="800">
+
+
     <Grid>
         <Label x:Name="ClientNameLabel" Content="Client Name:" HorizontalAlignment="Left" Margin="92,31,0,0" VerticalAlignment="Top" Width="87" Height="34"/>
         <TextBox x:Name="ClientNameTxt" HorizontalAlignment="Left" Margin="184,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="34"/>
@@ -22,9 +24,9 @@
         <Button x:Name="AddBtn" Content="Add" HorizontalAlignment="Left" Height="40" Margin="222,314,0,0" VerticalAlignment="Top" Width="156"/>
         <TextBlock x:Name="ServiceTagLabel" HorizontalAlignment="Left" Height="34" Margin="74,239,0,0" TextWrapping="Wrap" Text="Service Tag:" VerticalAlignment="Top" Width="105" TextAlignment="Center"/>
         <TextBox x:Name="ServiceCostTxt" HorizontalAlignment="Left" Height="33" Margin="184,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" LostFocus="ServiceCostTxt_LostFocus"/>
-        <StatusBar x:Name="StatusBar2" HorizontalAlignment="Center" Height="27" Margin="0,397,0,0" VerticalAlignment="Top" Width="780">
+        <StatusBar x:Name="StatusBar2" HorizontalAlignment="Center" Height="27" Margin="0,397,0,0" VerticalAlignment="Bottom" Width="800">
             <TextBlock x:Name="Status2Txt" Height="21" TextWrapping="Wrap" Width="776" Text="System Status:"/>
         </StatusBar>
 
-    </Grid>
+        </Grid>
 </Window>
