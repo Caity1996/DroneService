@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,6 +20,22 @@ namespace DroneService
             Express = new Queue<Drone>();
             Finished = new List<Drone>();
         }
+
+        public Queue<Drone> GetRegular()
+        {
+            return Regular;
+        }
+
+        public Queue<Drone> GetExpress()
+        {
+            return Express;
+        }
+
+        public List<Drone> GetFinished()
+        {
+            return Finished;
+        }
+
         public void AddRegularDrone(string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, int ServiceTag)
         {
             Regular.Enqueue(new Drone (ClientName, DroneModel, ServiceProblem, ServiceCost, ServiceTag));

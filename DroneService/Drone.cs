@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace DroneService
 {
-    internal class Drone
+    public class Drone
     {
-        string ClientName {  get; set; }
-        string DroneModel { get; set; }
-        string ServiceProblem { get; set; }
-        double ServiceCost { get; set; }
-        int ServiceTag { get; set; }
+       public string ClientName {  get; set; }
+       public string DroneModel { get; set; }
+       public string ServiceProblem { get; set; }
+       public double ServiceCost { get; set; }
+       public int ServiceTag { get; set; }
 
         public Drone()
         {

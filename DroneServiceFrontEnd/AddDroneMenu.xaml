@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DroneServiceFrontEnd"
         mc:Ignorable="d"
-        Title="AddDroneMenu" MaxHeight="450" MaxWidth="800">
+        Title="AddDroneMenu" MaxHeight="435" MaxWidth="800">
 
 
     <Grid Height="394">
