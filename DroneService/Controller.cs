@@ -19,7 +19,6 @@ namespace DroneService
             Express = new Queue<Drone>();
             Finished = new List<Drone>();
         }
-
         public void AddRegularDrone(string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, int ServiceTag)
         {
             Regular.Enqueue(new Drone (ClientName, DroneModel, ServiceProblem, ServiceCost, ServiceTag));
@@ -27,6 +26,7 @@ namespace DroneService
 
         public void AddExpressDrone(string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, int ServiceTag)
         {
+            ServiceCost = ServiceCost * 1.15;
             Express.Enqueue(new Drone (ClientName, DroneModel, ServiceProblem, ServiceCost, ServiceTag));
         }
 
@@ -38,7 +38,8 @@ namespace DroneService
             }
             else
             {
-                Regular.Dequeue();
+                Drone completedDrone = Regular.Dequeue();
+                Finished.Add(completedDrone);
                 return true;
             }
         }
@@ -51,7 +52,8 @@ namespace DroneService
             }
             else
             {
-                Express.Dequeue();
+                Drone completedDrone = Express.Dequeue();
+                Finished.Add(completedDrone);
                 return true;
             }
         }
