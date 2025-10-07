@@ -36,6 +36,11 @@ namespace DroneService
             return Finished;
         }
 
+        //public int CheckTag()
+        //{
+        //TODO: make a method to check if either queue contains the ServiceTag, and increment if the tag already exists
+        //}
+
         public void AddRegularDrone(string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, int ServiceTag)
         {
             Regular.Enqueue(new Drone (ClientName, DroneModel, ServiceProblem, ServiceCost, ServiceTag));

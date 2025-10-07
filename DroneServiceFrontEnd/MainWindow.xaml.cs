@@ -27,9 +27,5 @@ namespace DroneServiceFrontEnd
 
             addDroneMenu.ShowDialog();
         }
-        //public void somemethod(object sender)
-        //{
-        //    foreach(Drone drone in controller.getmethodgoeshere())
-        //}
     }
 }
