@@ -9,9 +9,9 @@ namespace DroneService
 {
     public class Controller
     {
-        Queue<Drone> Regular;
-        Queue<Drone> Express;
-        List<Drone> Finished;
+        private Queue<Drone> Regular;
+        private Queue<Drone> Express;
+        private List<Drone> Finished;
 
         public Controller()
         {
