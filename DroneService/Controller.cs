@@ -35,10 +35,15 @@ namespace DroneService
         {
             return Finished;
         }
-
-        //public int CheckTag()
+        //public int CheckRegTag()
         //{
-        //TODO: make a method to check if either queue contains the ServiceTag, and increment if the tag already exists
+        //TODO: make a method to check if Regular queue contains the ServiceTag, and increment if the tag already exists
+        //}
+
+
+        //public int CheckExTag()
+        //{
+        //TODO: make a method to check if Express queue contains the ServiceTag, and increment if the tag already exists
         //}
 
         public void AddRegularDrone(string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, int ServiceTag)
