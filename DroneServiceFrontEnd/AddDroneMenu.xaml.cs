@@ -61,48 +61,37 @@ namespace DroneServiceFrontEnd
 
             bool RadioButtonUnchecked = !(Regular.IsChecked == true) && !(Express.IsChecked == true);
 
-            if (TextNullCheck || RadioButtonUnchecked) { DisplayStatus("Error! Not all fields are filled, or a service type was not seleted!"); }
+            if (TextNullCheck || RadioButtonUnchecked) { DisplayStatus("Error! Not all fields are filled, or a service type was not seleted!"); return; }
 
-            else 
+            double ServiceCost = double.Parse(ServiceCostTxt.Text.Replace("$", "").Replace(",", ""));
+
+            if (Regular.IsChecked == true)
             {
-                if (Regular.IsChecked == true)
+                int ServiceTag = controller.IncrementRegTag();
+
+                controller.AddRegularDrone(ClientNameTxt.Text, DroneModelTxt.Text, ServiceProblemTxt.Text, ServiceCost, ServiceTag);
+
+                foreach (Drone drone in controller.GetRegular())
                 {
-                    double ServiceCost = double.Parse(ServiceCostTxt.Text.Replace("$", "").Replace(",", ""));
+                    mainWindow.RegularDroneList.Items.Add(drone);
+                }
+                DisplayStatus("Successfully added drone to the regular queue");
+                this.Close();
+            }
 
-                    int ServiceTag = int.Parse(ServiceTagTxt.Text);
+                else if (Express.IsChecked == true)
+                {
+                    int ServiceTag = controller.IncrementExTag();
+                    
+                    controller.AddExpressDrone(ClientNameTxt.Text, DroneModelTxt.Text, ServiceProblemTxt.Text, ServiceCost, ServiceTag);
 
-                    controller.AddRegularDrone(ClientNameTxt.Text, DroneModelTxt.Text, ServiceProblemTxt.Text, ServiceCost, ServiceTag);
-
-                    mainWindow.RegularDroneList.Items.Clear();
-
-                    foreach (Drone drone in controller.GetRegular())
-                    {
-                        mainWindow.RegularDroneList.Items.Add(drone);
-                    }
-                    DisplayStatus("Successfully added drone to the regular queue");
-                    this.Close();
+                foreach (Drone drone in controller.GetExpress())
+                {
+                    mainWindow.ExpressDroneList.Items.Add(drone);
                 }
 
-                if (Express.IsChecked == true)
-                {
-                    if (Regular.IsChecked == true)
-                    {
-                        double ServiceCost = double.Parse(ServiceCostTxt.Text.Replace("$", "").Replace(",", ""));
-
-                        int ServiceTag = int.Parse(ServiceTagTxt.Text);
-
-                        controller.AddExpressDrone(ClientNameTxt.Text, DroneModelTxt.Text, ServiceProblemTxt.Text, ServiceCost, ServiceTag);
-
-                        mainWindow.RegularDroneList.Items.Clear();
-
-                        foreach (Drone drone in controller.GetExpress())
-                        {
-                            mainWindow.ExpressDroneList.Items.Add(drone);
-                        }
-                        DisplayStatus("Successfully added drone to the regular queue");
-                        this.Close();
-                    }
-                }
+                DisplayStatus("Successfully added drone to the express queue");
+                this.Close();
             }
         }
     }

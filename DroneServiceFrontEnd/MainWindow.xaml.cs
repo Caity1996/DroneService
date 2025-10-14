@@ -27,5 +27,17 @@ namespace DroneServiceFrontEnd
 
             addDroneMenu.ShowDialog();
         }
+
+        private void RegularDroneList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var listBox = sender as ListBox;
+
+            if (listBox != null && listBox.SelectedItem != null)
+            {
+                var selectedDrone = listBox.SelectedItem as Drone;
+
+                MessageBox.Show(controller.DisplayDetails(selectedDrone));
+            }
+        }
     }
 }

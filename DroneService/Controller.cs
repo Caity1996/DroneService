@@ -35,16 +35,35 @@ namespace DroneService
         {
             return Finished;
         }
-        //public int CheckRegTag()
-        //{
-        //TODO: make a method to check if Regular queue contains the ServiceTag, and increment if the tag already exists
-        //}
+
+        public int IncrementRegTag()
+        {
+            int ServiceTag;
+
+            if (Regular.Count == 0 || Regular.Count >= 81)
+            {
+                ServiceTag = 100;
+                return ServiceTag;
+            }
+            Drone lastDrone = Regular.Last();
+            ServiceTag = lastDrone.ServiceTag + 10;
+            return ServiceTag;
+        }
 
 
-        //public int CheckExTag()
-        //{
-        //TODO: make a method to check if Express queue contains the ServiceTag, and increment if the tag already exists
-        //}
+        public int IncrementExTag()
+        {
+            int ServiceTag;
+
+            if (Express.Count == 0 || Express.Count >= 81)
+            {
+                ServiceTag = 100;
+                return ServiceTag;
+            }
+            Drone lastDrone = Express.Last();
+            ServiceTag = lastDrone.ServiceTag + 10;
+            return ServiceTag;
+        }
 
         public void AddRegularDrone(string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, int ServiceTag)
         {
@@ -55,6 +74,17 @@ namespace DroneService
         {
             ServiceCost = ServiceCost * 1.15;
             Express.Enqueue(new Drone (ClientName, DroneModel, ServiceProblem, ServiceCost, ServiceTag));
+        }
+
+        public string DisplayDetails(Drone SelectedDrone)
+        {
+            return 
+                "Drone Details:" +
+                $"\n{SelectedDrone.ClientName}" +
+                $"\n {SelectedDrone.DroneModel}" +
+                $"\n {SelectedDrone.ServiceProblem} " +
+                $"\n {SelectedDrone.ServiceCost}" +
+                $"\n {SelectedDrone.ServiceTag}";
         }
 
         public bool RemoveRegularDrone()

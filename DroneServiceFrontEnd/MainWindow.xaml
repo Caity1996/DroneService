@@ -13,7 +13,7 @@
 
             <StackPanel>
 
-                <ListView x:Name="RegularDroneList" HorizontalAlignment="Left" Height="210" VerticalAlignment="Top" Width="150" Margin="50">
+                <ListView x:Name="RegularDroneList" HorizontalAlignment="Left" Height="210" VerticalAlignment="Top" Width="150" Margin="50" SelectionChanged="RegularDroneList_SelectionChanged">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Regular Drones" DisplayMemberBinding="{Binding ServiceTag}" Width="150"/>
