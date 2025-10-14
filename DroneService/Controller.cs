@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Formats.Asn1;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -13,6 +14,7 @@ namespace DroneService
         private Queue<Drone> Regular;
         private Queue<Drone> Express;
         private List<Drone> Finished;
+        private int tag = 90;
 
         public Controller()
         {
@@ -36,55 +38,37 @@ namespace DroneService
             return Finished;
         }
 
-        public int IncrementRegTag()
+        public int IncrementTag()
         {
-            int ServiceTag;
-
-            if (Regular.Count == 0 || Regular.Count >= 81)
+            if (tag == 900)
             {
-                ServiceTag = 100;
-                return ServiceTag;
+                tag = 100;
+                return tag;
             }
-            Drone lastDrone = Regular.Last();
-            ServiceTag = lastDrone.ServiceTag + 10;
-            return ServiceTag;
-        }
-
-
-        public int IncrementExTag()
-        {
-            int ServiceTag;
-
-            if (Express.Count == 0 || Express.Count >= 81)
-            {
-                ServiceTag = 100;
-                return ServiceTag;
-            }
-            Drone lastDrone = Express.Last();
-            ServiceTag = lastDrone.ServiceTag + 10;
-            return ServiceTag;
+            tag = tag + 10;
+            return tag;
         }
 
         public void AddRegularDrone(string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, int ServiceTag)
-        {
-            Regular.Enqueue(new Drone (ClientName, DroneModel, ServiceProblem, ServiceCost, ServiceTag));
+        {           
+            Regular.Enqueue(new Drone (ClientName, DroneModel, ServiceProblem, ServiceCost, tag));
         }
 
         public void AddExpressDrone(string ClientName, string DroneModel, string ServiceProblem, double ServiceCost, int ServiceTag)
         {
-            ServiceCost = ServiceCost * 1.15;
-            Express.Enqueue(new Drone (ClientName, DroneModel, ServiceProblem, ServiceCost, ServiceTag));
+            ServiceCost = Math.Round(ServiceCost * 1.15, 2);      
+            Express.Enqueue(new Drone (ClientName, DroneModel, ServiceProblem, ServiceCost, tag));
         }
 
         public string DisplayDetails(Drone SelectedDrone)
         {
             return 
                 "Drone Details:" +
-                $"\n{SelectedDrone.ClientName}" +
-                $"\n {SelectedDrone.DroneModel}" +
-                $"\n {SelectedDrone.ServiceProblem} " +
-                $"\n {SelectedDrone.ServiceCost}" +
-                $"\n {SelectedDrone.ServiceTag}";
+                $"\nClient Name: {SelectedDrone.ClientName}" +
+                $"\nDrone Model: {SelectedDrone.DroneModel}" +
+                $"\nService Problem: {SelectedDrone.ServiceProblem} " +
+                $"\nService Cost: {SelectedDrone.ServiceCost:C2}" +
+                $"\nService Tag: {SelectedDrone.ServiceTag}";
         }
 
         public bool RemoveRegularDrone()

@@ -36,9 +36,9 @@
 
             </StackPanel>
 
-            <StackPanel>
+            <StackPanel x:Name="___No_Name_">
 
-                <ListView HorizontalAlignment="Left" Height="210" Width="150"  Margin="50">
+                <ListView x:Name="CompletedDroneLst" HorizontalAlignment="Left" Height="210" Width="150"  Margin="50">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Completed Drones" DisplayMemberBinding="{Binding ServiceTag}" Width="150"/>
@@ -52,10 +52,15 @@
         </StackPanel>
 
 
-        <StackPanel HorizontalAlignment="Center">
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
 
-            <Button  x:Name="AddDroneBtn" Content="Add Drone" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="46" Width="204" Click="Button_Click"/>
-                   
+
+            <Button  x:Name="RegDequeueBtn" Content="Dequeue Regular Drone" HorizontalAlignment="Center" VerticalAlignment="Top" Height="46" Width="204" Margin="0,0,50,0" Click="RegDequeueBtn_Click"/>
+
+            <Button  x:Name="AddDroneBtn" Content="Add Drone" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="46" Width="204" Margin="0,0,50,0" Click="AddDroneBtn_Click"/>
+
+            <Button  x:Name="ExDequeueBtn" Content="Dequeue Express Drone" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="46" Width="204" Click="ExDequeueBtn_Click"/>
+
         </StackPanel>
 
 

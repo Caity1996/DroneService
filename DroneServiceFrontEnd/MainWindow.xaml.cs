@@ -21,11 +21,45 @@ namespace DroneServiceFrontEnd
             controller = new Controller();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void DisplayStatus(string msg)
         {
-            AddDroneMenu addDroneMenu = new AddDroneMenu();
+            Status1Txt.Text = $"System Status: {msg}";
+        }
 
+        private void AddDroneBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddDroneMenu addDroneMenu = new AddDroneMenu(controller);
             addDroneMenu.ShowDialog();
+            UpdateUI();
+        }
+
+        private void RegDequeueBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (controller.GetRegular().Count == 0)
+            {
+                DisplayStatus("Error! No Drones found to Dequeue!");
+                UpdateUI();
+            }
+            else
+            {
+                controller.RemoveRegularDrone();
+                DisplayStatus("First Drone sucessfully removed from the Regular queue and added to Completed List!");
+                UpdateUI();
+            }
+        }
+        private void ExDequeueBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (controller.GetExpress().Count == 0)
+            {
+                DisplayStatus("Error! No Drones found to Dequeue!");
+                UpdateUI();
+            }
+            else
+            {
+                controller.RemoveExpressDrone();
+                DisplayStatus("First Drone sucessfully removed from the Express queue and added to Completed List!");
+                UpdateUI();
+            }
         }
 
         private void RegularDroneList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -38,6 +72,29 @@ namespace DroneServiceFrontEnd
 
                 MessageBox.Show(controller.DisplayDetails(selectedDrone));
             }
+        }
+
+        private void ExpressDroneList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var listBox = sender as ListBox;
+
+            if (listBox != null && listBox.SelectedItem != null)
+            {
+                var selectedDrone = listBox.SelectedItem as Drone;
+
+                MessageBox.Show(controller.DisplayDetails(selectedDrone));
+            }
+        }
+
+        public void UpdateUI()
+        {
+            RegularDroneList.ItemsSource = null;
+            ExpressDroneList.ItemsSource = null;
+            CompletedDroneLst.ItemsSource = null;
+
+            RegularDroneList.ItemsSource = controller.GetRegular();
+            ExpressDroneList.ItemsSource = controller.GetExpress();
+            CompletedDroneLst.ItemsSource = controller.GetFinished();
         }
     }
 }

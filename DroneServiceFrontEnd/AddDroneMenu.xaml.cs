@@ -23,11 +23,11 @@ namespace DroneServiceFrontEnd
     {
         private Controller controller;
         private MainWindow mainWindow;
-        public AddDroneMenu()
+        public AddDroneMenu(Controller controller)
         {
             InitializeComponent();
             mainWindow = Application.Current.MainWindow as MainWindow;
-            controller = new Controller();
+            this.controller = controller;
         }
 
         public void DisplayStatus(string msg)
@@ -65,32 +65,22 @@ namespace DroneServiceFrontEnd
 
             double ServiceCost = double.Parse(ServiceCostTxt.Text.Replace("$", "").Replace(",", ""));
 
+            int ServiceTag = controller.IncrementTag();
+
             if (Regular.IsChecked == true)
             {
-                int ServiceTag = controller.IncrementRegTag();
-
                 controller.AddRegularDrone(ClientNameTxt.Text, DroneModelTxt.Text, ServiceProblemTxt.Text, ServiceCost, ServiceTag);
 
-                foreach (Drone drone in controller.GetRegular())
-                {
-                    mainWindow.RegularDroneList.Items.Add(drone);
-                }
                 DisplayStatus("Successfully added drone to the regular queue");
                 this.Close();
             }
 
-                else if (Express.IsChecked == true)
-                {
-                    int ServiceTag = controller.IncrementExTag();
-                    
-                    controller.AddExpressDrone(ClientNameTxt.Text, DroneModelTxt.Text, ServiceProblemTxt.Text, ServiceCost, ServiceTag);
+            else if(Express.IsChecked == true)
+            { 
 
-                foreach (Drone drone in controller.GetExpress())
-                {
-                    mainWindow.ExpressDroneList.Items.Add(drone);
-                }
+                controller.AddExpressDrone(ClientNameTxt.Text, DroneModelTxt.Text, ServiceProblemTxt.Text, ServiceCost, ServiceTag);
 
-                DisplayStatus("Successfully added drone to the express queue");
+                DisplayStatus("Successfully added drone to the regular queue");
                 this.Close();
             }
         }
