@@ -80,7 +80,7 @@ namespace DroneServiceFrontEnd
 
                 controller.AddExpressDrone(ClientNameTxt.Text, DroneModelTxt.Text, ServiceProblemTxt.Text, ServiceCost, ServiceTag);
 
-                DisplayStatus("Successfully added drone to the regular queue");
+                DisplayStatus("Successfully added drone to the express queue");
                 this.Close();
             }
         }

@@ -86,15 +86,39 @@ namespace DroneServiceFrontEnd
             }
         }
 
+        private void CompletedDroneLst_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var listBox = sender as ListBox;
+
+            if (listBox != null && listBox.SelectedItem != null)
+            {
+                var selectedDrone = listBox.SelectedItem as Drone;
+
+                MessageBox.Show(controller.DisplayDetails(selectedDrone));
+            }
+        }
+
+        private void CompletedDroneLst_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var item = sender as ListViewItem;
+
+            if (item != null && item.Content is Drone selectedDrone)
+            {
+                controller.RemoveCompletedDrone(selectedDrone);
+                UpdateUI();
+                DisplayStatus($"Item Number: {selectedDrone.ServiceTag} sucessfully removed from the completed List!");
+            }
+        }
+
         public void UpdateUI()
         {
             RegularDroneList.ItemsSource = null;
             ExpressDroneList.ItemsSource = null;
             CompletedDroneLst.ItemsSource = null;
 
-            RegularDroneList.ItemsSource = controller.GetRegular();
-            ExpressDroneList.ItemsSource = controller.GetExpress();
-            CompletedDroneLst.ItemsSource = controller.GetFinished();
+            RegularDroneList.ItemsSource = controller.GetRegular().ToList();
+            ExpressDroneList.ItemsSource = controller.GetExpress().ToList();
+            CompletedDroneLst.ItemsSource = controller.GetFinished().ToList();
         }
     }
 }

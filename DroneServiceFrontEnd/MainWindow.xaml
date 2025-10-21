@@ -26,7 +26,7 @@
 
             <StackPanel>
 
-                <ListView x:Name="ExpressDroneList" HorizontalAlignment="Center" Height="210" VerticalAlignment="Top" Width="150"  Margin="50">
+                <ListView x:Name="ExpressDroneList" HorizontalAlignment="Center" Height="210" VerticalAlignment="Top" Width="150" Margin="50" SelectionChanged="ExpressDroneList_SelectionChanged">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Express Drones" DisplayMemberBinding="{Binding ServiceTag}" Width="150"/>
@@ -38,7 +38,14 @@
 
             <StackPanel x:Name="___No_Name_">
 
-                <ListView x:Name="CompletedDroneLst" HorizontalAlignment="Left" Height="210" Width="150"  Margin="50">
+                <ListView x:Name="CompletedDroneLst" HorizontalAlignment="Left" Height="210" Width="150"  Margin="50" SelectionChanged="CompletedDroneLst_SelectionChanged">
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <EventSetter Event="MouseDoubleClick" Handler="CompletedDroneLst_MouseDoubleClick"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Completed Drones" DisplayMemberBinding="{Binding ServiceTag}" Width="150"/>

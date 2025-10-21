@@ -98,5 +98,10 @@ namespace DroneService
                 return true;
             }
         }
+
+        public void RemoveCompletedDrone(Drone item)
+        {
+            Finished.Remove(item);
+        }
     }
 }
